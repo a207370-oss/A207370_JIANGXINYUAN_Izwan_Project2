@@ -47,4 +47,43 @@ As outlined by the project parameters, this updated system expands into a cohesi
 ---
 
 ## 🗺️ UI Expansion (7 Distinct Screens Architecture)
-The user interface
+The user interface has been modularly expanded from the baseline 5 screens into **7 standalone functional screens** wired together via a single `NavHostController`:
+
+1. **Home Screen (`home`):** Main analytical dashboard tracking overarching completion progress rates alongside dynamic reactive lists.
+2. **Add Screen (`add`):** Mathematical input layout calculating initial timestamps and multi-day interval retention schedules.
+3. **Plan Screen (`plan`):** Chronological timeline detailing specific upcoming repetition targets mapped out on the curve.
+4. **Records Screen (`records`):** Histograms / tracking sheets summarizing current logged memory events.
+5. **Stats Screen (`stats`):** Deep analytical data review mapping global retention health parameters.
+6. **API Explore Screen (`explore`):** Dynamic Retrofit controller pulling motivational quote arrays into native persistence states.
+7. **Community Screen (`community`):** Distributed Firebase Firestore synchronization network allowing peer card streaming.
+
+---
+
+## 📸 Visual Evidence & Interface Demonstration
+*(Note: These high-resolution screenshots represent live physical execution states of the core modules).*
+
+### Figure 1: Reactive Home Dashboard & Hardware Awareness
+![Home Dashboard Screen](Screenshot_20260615_003513.jpg)
+*Detailed description of the interactive dashboard tracking real-time curve stats and displaying live local Room flow lists. This layout listens to the hardware Accelerometer to trigger shake-to-review notifications.*
+
+### Figure 2: Asynchronous REST Web API Integration
+![Web API Explore Screen](Screenshot_20260615_003517.jpg)
+*Demonstration of the external Retrofit network channel fetching educational insights and global quotes dynamically into offline persistence cache structures.*
+
+### Figure 3: Peer-to-Peer Firebase Cloud Synchronization
+![Firebase Community Hub](Screenshot_20260615_003528.jpg)
+*The distributed community workspace utilizing Firebase Firestore client streams to synchronize custom revision flashcards and multi-user data models globally.*
+
+---
+
+## 💻 Code Snippet Highlights
+
+### Thread-Safe Architecture Setup (`EbbinghausViewModel.kt`)
+```kotlin
+// Cold Flow collection converting local Room queries into high-performance lifecycle-aware UI state
+val studyList: StateFlow<List<StudyItem>> = studyDao.getAllItems()
+    .stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = emptyList()
+    )
